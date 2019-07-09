@@ -1,0 +1,5 @@
+vuex
+
+1.- state para declarar las variables que seran en comun entre componentes
+2.- las mutaciones son funciones en comun
+3.- mapState para importar variables y mutaciones
