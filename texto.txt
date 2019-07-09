@@ -3,3 +3,5 @@ vuex
 1.- state para declarar las variables que seran en comun entre componentes
 2.- las mutaciones son funciones en comun
 3.- mapState para importar variables y mapMutations mutaciones
+
+4.- para actions (consulta api), se crea una funcion en actions, y luego un commit con una mutacion

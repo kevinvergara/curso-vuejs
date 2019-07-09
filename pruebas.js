@@ -5,13 +5,20 @@ Vue.component("titulo",{
         <h1>numero: {{numero}}</h1>
         <button class="btn btn-success" @click="aumentar">+++</button>
         <hijo></hijo>
+        <hr>
+        <button class="btn btn-success" @click="getcursos">cargar cursos</button>
+        <ul v-for="curso of cursos">
+            <li>{{curso.nombre}}</li>
+        </ul>
+        <hr>
     </div>
     `,
     computed:{
-        ...Vuex.mapState(["numero"])
+        ...Vuex.mapState(["numero","cursos"])
     },
     methods: {
-        ...Vuex.mapMutations(["aumentar"])
+        ...Vuex.mapMutations(["aumentar"]),
+        ...Vuex.mapActions(["getcursos"])
     }
 });
 
@@ -27,11 +34,23 @@ Vue.component("hijo",{
 
 const store = new Vuex.Store({
     state: {
-        numero: 10
+        numero: 10,
+        cursos: []
     },
     mutations: {
         aumentar(){
             this.state.numero ++;
+        },
+        llenarcursos(state, cursosa){
+            state.cursos = cursosa;
+        }
+    },
+    actions: {
+        getcursos: async function ({ commit }) {
+            const data = await fetch('data/cursos.json');
+            const cursos = await data.json();
+
+            commit('llenarcursos', cursos);
         }
     }
 });
