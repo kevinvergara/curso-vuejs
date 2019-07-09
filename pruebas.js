@@ -3,11 +3,15 @@ Vue.component("titulo",{
     `
     <div>
         <h1>numero: {{numero}}</h1>
+        <button class="btn btn-success" @click="aumentar">+++</button>
         <hijo></hijo>
     </div>
     `,
     computed:{
         ...Vuex.mapState(["numero"])
+    },
+    methods: {
+        ...Vuex.mapMutations(["aumentar"])
     }
 });
 
